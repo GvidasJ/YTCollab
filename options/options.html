@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YT Collab · Options</title>
+  <link rel="stylesheet" href="../ui/common.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <div class="row">
+      <img src="../icons/icon48.png" width="28" height="28" alt="">
+      <h1 class="grow">YT Collab · Options</h1>
+      <a href="../manager/manager.html">Manager</a>
+    </div>
+    <div id="notice" class="notice hidden" role="status"></div>
+
+    <section class="card">
+      <h2>Channels</h2>
+      <p class="small muted">The order here is the order in the popup. Handles are what the invite search types, so they must be exact. The ID is how the right channel is picked from the search results.</p>
+      <table>
+        <thead><tr><th>Order</th><th>Display name</th><th>Handle</th><th>Channel ID</th><th></th></tr></thead>
+        <tbody id="channels"></tbody>
+      </table>
+      <p id="no-channels" class="small muted hidden">No channels yet. In each channel's Chrome profile, open the popup and press <b>Save this channel</b>, or add one below.</p>
+      <details class="add">
+        <summary class="small">Add a channel by hand</summary>
+        <div class="row wrap">
+          <input id="add-name" type="text" placeholder="Name">
+          <input id="add-handle" type="text" placeholder="@handle">
+          <input id="add-id" type="text" class="mono grow" placeholder="UC… channel ID (24 characters)">
+          <button data-act="add">Add</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Running</h2>
+      <label class="opt"><input id="dryRun" type="checkbox"> <span><b>Dry run</b>: highlight each element instead of doing the action. Safe steps (opening sections and dialogs, typing the search) still happen so every step can be shown. Anything that creates, accepts or removes something is only outlined in dashed orange, and the run stops there. Turn this off once a dry run highlighted the right things.</span></label>
+      <label class="opt"><input id="backgroundTabs" type="checkbox"> <span><b>Background tabs</b>: open invite links (Accept) and Details pages (Remove, Retry) in background tabs. Dry runs always open them in front.</span></label>
+      <div class="row wrap">
+        <label>Pause between actions <input id="stepDelayMs" type="number" min="200" max="5000" step="100"> ms</label>
+        <label>Wait up to <input id="stepTimeoutS" type="number" min="5" max="120" step="1"> s for each element</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Backup and move</h2>
+      <p class="small muted">Export saves your channels and invite history as a JSON file. Import merges a file (or a hand-off code) into this profile: new channels and invites are added, newer records replace older ones, and nothing is deleted.</p>
+      <div class="row wrap">
+        <button data-act="export-download">Export JSON file</button>
+        <button data-act="export-copy">Copy JSON</button>
+        <label class="btn">Import JSON file<input id="import-file" type="file" accept="application/json,.json" hidden></label>
+      </div>
+      <textarea id="import-text" rows="3" placeholder="…or paste JSON / a YTC1. code here" style="margin-top:8px"></textarea>
+      <div class="row"><button data-act="import-text">Import pasted text</button></div>
+    </section>
+
+    <section class="card">
+      <h2>Stored data</h2>
+      <div class="row wrap">
+        <span id="stats" class="small muted grow"></span>
+        <button data-act="clear-jobs">Clear finished runs</button>
+        <button class="danger" data-act="clear-rec">Clear recording</button>
+      </div>
+    </section>
+
+    <p class="small muted">Selectors version: <span id="selver" class="mono"></span> · Extension <span id="ver"></span></p>
+  </main>
+
+  <script src="../selectors.js"></script>
+  <script src="../lib/shared.js"></script>
+  <script src="../lib/store.js"></script>
+  <script src="../ui/common.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

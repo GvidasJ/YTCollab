@@ -1,0 +1,140 @@
+/* Shared styles for the popup, the Manager tab and the options page. */
+:root {
+  --bg: #ffffff;
+  --bg-2: #f6f7f9;
+  --fg: #16181d;
+  --fg-2: #5b616e;
+  --line: #e2e5ea;
+  --accent: #cc0000;
+  --accent-fg: #ffffff;
+  --blue: #1a73e8;
+  --ok: #188038;
+  --ok-bg: #e6f4ea;
+  --warn: #a15c00;
+  --warn-bg: #fef3e0;
+  --bad: #c5221f;
+  --bad-bg: #fce8e6;
+  --mute: #5f6368;
+  --mute-bg: #eceff1;
+  --radius: 8px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d22;
+    --bg-2: #24272e;
+    --fg: #e8eaed;
+    --fg-2: #a0a6b1;
+    --line: #353943;
+    --ok: #81c995;
+    --ok-bg: #1e3326;
+    --warn: #fdd663;
+    --warn-bg: #3a3020;
+    --bad: #f28b82;
+    --bad-bg: #3c2422;
+    --mute: #bdc1c6;
+    --mute-bg: #2f333a;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+h1, h2, h3 { margin: 0; font-weight: 650; }
+h1 { font-size: 16px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--fg-2); }
+h3 { font-size: 14px; }
+a { color: var(--blue); }
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.muted { color: var(--fg-2); }
+.small { font-size: 12px; }
+.hidden { display: none !important; }
+.row { display: flex; align-items: center; gap: 8px; }
+.row.wrap { flex-wrap: wrap; }
+.grow { flex: 1; min-width: 0; }
+.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stack > * + * { margin-top: 8px; }
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: var(--bg);
+}
+.card + .card { margin-top: 10px; }
+.card > h2 { margin-bottom: 8px; }
+
+button, .btn {
+  font: inherit;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--fg);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+button:hover:not(:disabled) { border-color: var(--fg-2); }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); font-weight: 600; }
+button.danger { color: var(--bad); border-color: var(--bad); background: transparent; }
+button.link { border: 0; background: none; padding: 0; color: var(--blue); }
+button.tiny { padding: 1px 7px; font-size: 12px; }
+
+input[type='text'], input[type='number'], textarea, select {
+  font: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+textarea { width: 100%; resize: vertical; }
+input[type='checkbox'] { accent-color: var(--accent); }
+
+.chip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.chip-pending { color: var(--warn); background: var(--warn-bg); }
+.chip-accepted, .chip-done { color: var(--ok); background: var(--ok-bg); }
+.chip-failed, .chip-error { color: var(--bad); background: var(--bad-bg); }
+.chip-removed, .chip-cancelled, .chip-queued { color: var(--mute); background: var(--mute-bg); }
+.chip-running { color: var(--blue); background: var(--mute-bg); }
+.chip-dry { color: #fff; background: #ff8800; }
+
+.notice {
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+}
+.notice.info { background: var(--mute-bg); }
+.notice.ok { background: var(--ok-bg); color: var(--ok); }
+.notice.warn { background: var(--warn-bg); color: var(--warn); }
+.notice.bad { background: var(--bad-bg); color: var(--bad); }
+
+.list { list-style: none; margin: 0; padding: 0; }
+.list > li { padding: 7px 0; border-top: 1px solid var(--line); }
+.list > li:first-child { border-top: 0; }
+
+.job .step { font-size: 12px; color: var(--fg-2); }
+.job.error .step { color: var(--bad); }
+.spinner {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--blue); border-right-color: transparent;
+  animation: spin .8s linear infinite; vertical-align: -1px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 6px 8px; border-top: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--fg-2); font-weight: 600; border-top: 0; }

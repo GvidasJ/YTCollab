@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YT Collab</title>
+  <link rel="stylesheet" href="../ui/common.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="row">
+    <img src="../icons/icon32.png" width="20" height="20" alt="">
+    <h1 class="grow">YT Collab</h1>
+    <span id="dry" class="chip chip-dry hidden" title="Dry run is on: it highlights what it would click and changes nothing. Turn it off in Options.">DRY RUN</span>
+    <button class="link" data-act="open-manager" title="Every invite, with Remove">Manager</button>
+    <button class="link" data-act="open-options">Options</button>
+  </header>
+  <div id="active" class="small muted"></div>
+  <div id="notice" class="notice hidden" role="status"></div>
+
+  <section id="invite" class="card hidden"></section>
+  <section id="accept" class="card hidden"></section>
+
+  <section id="jobs" class="card hidden">
+    <div class="row"><h2 class="grow">Progress</h2><button class="tiny" data-act="jobs-clear">Clear finished</button></div>
+    <ul id="jobs-list" class="list"></ul>
+  </section>
+
+  <details id="handoff" class="card" open>
+    <summary><h2>Hand-off between Chrome profiles</h2></summary>
+    <p class="small muted">Each channel lives in its own Chrome profile, and profiles don't share this extension's data. Copy a code here and paste it into the popup in the other profile.</p>
+    <div class="row wrap">
+      <button data-act="copy-pending" title="All pending invites with their links, plus your saved channels">Copy pending invites</button>
+      <button data-act="copy-results" title="Accepted invites, to update the inviting profile's history">Copy accepted (send back)</button>
+      <button data-act="paste-toggle">Paste code…</button>
+    </div>
+    <div id="paste-box" class="hidden stack">
+      <textarea id="paste-text" rows="3" placeholder="Paste a code that starts with YTC1."></textarea>
+      <div class="row"><button class="primary" data-act="paste-import">Import</button><button data-act="paste-cancel">Cancel</button></div>
+    </div>
+  </details>
+
+  <section id="channels" class="card"></section>
+
+  <details id="recorder" class="card">
+    <summary><h2>Recorder (discovery)</h2> <span id="rec-badge"></span></summary>
+    <p class="small muted">While recording, every click and typed text on Studio / YouTube is logged with page snapshots, so the automation can be mapped to your Studio. Do the flow by hand once, then copy or download the recording and send it over. It contains page HTML (video titles, channel names), so look it over before sharing.</p>
+    <div class="row"><button id="rec-toggle" data-act="rec-toggle">Start recording</button><span id="rec-stats" class="small muted grow"></span></div>
+    <div class="row"><input id="rec-note" type="text" class="grow" placeholder="Note, e.g. “now clicking Create link”"><button data-act="rec-note">Add note</button></div>
+    <div class="row wrap">
+      <button data-act="rec-snapshot" title="Save the whole current page (and any open dialog) into the recording">Snapshot this page</button>
+      <button data-act="rec-copy">Copy recording</button>
+      <button data-act="rec-download">Download</button>
+      <button class="danger" data-act="rec-clear">Clear</button>
+    </div>
+    <div id="rec-reason" class="small muted"></div>
+  </details>
+
+  <section id="history" class="card hidden"></section>
+
+  <script src="../selectors.js"></script>
+  <script src="../lib/shared.js"></script>
+  <script src="../lib/store.js"></script>
+  <script src="../ui/common.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

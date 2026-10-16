@@ -1,0 +1,23 @@
+body { background: var(--bg-2); }
+main { max-width: 900px; margin: 0 auto; padding: 24px; }
+main > .card { margin-top: 12px; }
+#notice { margin-top: 12px; white-space: pre-line; }
+.card p { margin: 0 0 10px; }
+td input[type='text'] { width: 100%; }
+td.order { white-space: nowrap; width: 70px; }
+td.id { font-size: 12px; word-break: break-all; }
+td.actions { text-align: right; white-space: nowrap; }
+.add { margin-top: 10px; }
+.add summary { cursor: pointer; color: var(--blue); margin-bottom: 8px; }
+label.opt { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+label.opt input { margin-top: 3px; }
+input[type='number'] { width: 80px; }
+label.btn { display: inline-block; }
+@media (max-width: 640px) {
+  main { padding: 12px; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  thead { display: none; }
+  tr { border-top: 1px solid var(--line); padding: 8px 0; }
+  td { border-top: 0; padding: 3px 0; }
+  td.actions { text-align: left; }
+}

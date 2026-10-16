@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YT Collab · Manager</title>
+  <link rel="stylesheet" href="../ui/common.css">
+  <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+  <header class="top">
+    <div class="row wrap">
+      <img src="../icons/icon48.png" width="28" height="28" alt="">
+      <h1 class="grow">Collaborations</h1>
+      <span id="dry" class="chip chip-dry hidden" title="Dry run is on: runs only highlight what they would click. Turn it off in Options.">DRY RUN</span>
+      <a href="../options/options.html" target="_blank">Options</a>
+    </div>
+    <div id="active" class="small muted"></div>
+  </header>
+
+  <main>
+    <div id="notice" class="notice hidden" role="status"></div>
+
+    <section id="jobs" class="card hidden">
+      <div class="row"><h2 class="grow">Progress</h2>
+        <button class="tiny" data-act="jobs-stop-all">Stop all</button>
+        <button class="tiny" data-act="jobs-clear">Clear finished</button></div>
+      <ul id="jobs-list" class="list"></ul>
+    </section>
+
+    <section class="card">
+      <div class="row wrap toolbar">
+        <input id="q" type="text" class="grow" placeholder="Search video title, video ID, channel or handle">
+        <select id="status" aria-label="Status">
+          <option value="">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="accepted">Accepted</option>
+          <option value="failed">Failed</option>
+          <option value="removed">Removed</option>
+        </select>
+        <select id="side" aria-label="Signed-in channel">
+          <option value="">All invites</option>
+          <option value="from">Invites the signed-in channel sent</option>
+          <option value="to">Invites to the signed-in channel</option>
+        </select>
+      </div>
+      <div id="bulk" class="row wrap bulk hidden">
+        <span id="bulk-count" class="grow small"></span>
+        <button data-act="bulk-accept">Accept selected</button>
+        <button class="danger" data-act="bulk-remove">Remove selected from videos…</button>
+        <button data-act="bulk-forget">Remove selected from list…</button>
+        <button class="link" data-act="bulk-clear">Clear selection</button>
+      </div>
+    </section>
+
+    <div id="videos"></div>
+    <p id="empty" class="muted hidden">No invites yet. Open a video's Details page in Studio and use the popup to invite your channels, or paste a hand-off code below.</p>
+
+    <section class="card">
+      <h2>Hand-off between Chrome profiles</h2>
+      <div class="row wrap">
+        <button data-act="copy-pending">Copy pending invites</button>
+        <button data-act="copy-results">Copy accepted (send back)</button>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <textarea id="paste-text" rows="2" class="grow" placeholder="Paste a code that starts with YTC1."></textarea>
+        <button class="primary" data-act="paste-import">Import</button>
+      </div>
+    </section>
+
+    <section class="card help">
+      <h2>About removing</h2>
+      <p class="small"><b>Remove from video</b> takes that collaborator off the video in YouTube Studio. It runs in the profile where the <i>uploading</i> channel is signed in: the extension checks the signed-in channel, opens the video's Details page, and clicks that collaborator's remove control in the Collaboration section. Nothing else on the video is touched. With dry run on it only highlights what it would click.</p>
+      <p class="small"><b>Remove from list</b> only deletes the extension's record in this profile. YouTube is not touched.</p>
+    </section>
+  </main>
+
+  <script src="../selectors.js"></script>
+  <script src="../lib/shared.js"></script>
+  <script src="../lib/store.js"></script>
+  <script src="../ui/common.js"></script>
+  <script src="manager.js"></script>
+</body>
+</html>

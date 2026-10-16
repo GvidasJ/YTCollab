@@ -1,0 +1,26 @@
+body { background: var(--bg-2); }
+header.top { background: var(--bg); border-bottom: 1px solid var(--line); padding: 14px 24px; position: sticky; top: 0; z-index: 2; }
+header.top img { border-radius: 6px; }
+main { max-width: 1040px; margin: 0 auto; padding: 18px 24px 40px; }
+main > .card, #videos > .card { margin-top: 12px; }
+#notice { margin-top: 0; white-space: pre-line; }
+.toolbar input { min-width: 220px; }
+.bulk { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.video-head { margin-bottom: 6px; }
+.video-head .meta { font-size: 12px; color: var(--fg-2); }
+td.actions { white-space: nowrap; text-align: right; }
+td.actions button + button { margin-left: 4px; }
+td .err { color: var(--bad); font-size: 12px; }
+td .note { color: var(--warn); font-size: 12px; }
+td .step { color: var(--fg-2); font-size: 12px; }
+td.sel { width: 26px; }
+.help p { margin: 6px 0 0; }
+@media (max-width: 700px) {
+  main { padding: 12px; }
+  header.top { padding: 12px; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  thead { display: none; }
+  td { border-top: 0; padding: 3px 0; }
+  tr { border-top: 1px solid var(--line); padding: 8px 0; }
+  td.actions { text-align: left; }
+}

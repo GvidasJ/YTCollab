@@ -1,0 +1,17 @@
+body { width: 430px; padding: 12px; }
+header { margin-bottom: 4px; }
+header img { border-radius: 4px; }
+#active { margin-bottom: 10px; min-height: 18px; }
+details.card > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary::before { content: '▸'; color: var(--fg-2); font-size: 11px; }
+details.card[open] > summary::before { content: '▾'; }
+details.card[open] > summary { margin-bottom: 8px; }
+details.card p { margin: 0 0 8px; }
+.card .row + .row { margin-top: 8px; }
+.ch-row { gap: 10px; }
+.ch-row .actions { display: flex; gap: 4px; align-items: center; }
+.err { color: var(--bad); font-size: 12px; }
+.note { color: var(--warn); font-size: 12px; }
+.footer-row { margin-top: 10px; }
+.others li { font-size: 12px; }
